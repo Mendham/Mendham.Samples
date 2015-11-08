@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "description": "Demonstrates how to used Mendham.Domain",
+  "authors": [ "Craig Beall" ],
+  "tags": [ "" ],
+   "projectUrl": "https://github.com/cbeall/Mendham.Samples",
+  "licenseUrl": "https://raw.githubusercontent.com/cbeall/Mendham.Samples/master/LICENSE",
+  "frameworks": {
+    "net451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23409",
+        "System.Collections": "4.0.11-beta-23409",
+        "System.Linq": "4.0.1-beta-23409",
+        "System.Runtime": "4.0.21-beta-23409",
+        "System.Threading": "4.0.11-beta-23409"
+      }
+    }
+  },
+  "dependencies": {
+    "Mendham.Domain": "0.1.0-alpha-00094"
+  }
+}
