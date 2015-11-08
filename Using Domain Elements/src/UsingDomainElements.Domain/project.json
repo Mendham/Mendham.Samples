@@ -3,7 +3,7 @@
   "description": "Demonstrates how to used Mendham.Domain",
   "authors": [ "Craig Beall" ],
   "tags": [ "" ],
-   "projectUrl": "https://github.com/cbeall/Mendham.Samples",
+  "projectUrl": "https://github.com/cbeall/Mendham.Samples",
   "licenseUrl": "https://raw.githubusercontent.com/cbeall/Mendham.Samples/master/LICENSE",
   "frameworks": {
     "net451": { },
