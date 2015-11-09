@@ -26,6 +26,19 @@ namespace MendhamSamples.UsingDomainElements.Domain.SimpleEntity
         public CustomerId Id { get; private set; }
         public Name Name { get; private set; }
 
+        public async Task<Name> UpdateNameAsync(Name name)
+        {
+            name.VerifyArgumentNotDefaultValue("Name is required");
+
+            var originalName = this.Name;
+            this.Name = name;
+
+            await facade.SaveCustomerAsync(this);
+            await facade.RaiseEventAsync(new CustomerNameChanged(this.Id, originalName, this.Name));
+
+            return this.Name;
+        }
+
         protected override IEnumerable<object> EqualityComponents
         {
             get

@@ -18,6 +18,6 @@
     }
   },
   "dependencies": {
-    "Mendham.Domain": "0.1.0-alpha-00094"
+    "Mendham.Domain": "0.1.0-*"
   }
 }
