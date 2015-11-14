@@ -13,6 +13,7 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
     {
         private CustomerId id;
         private Name name;
+        private EmailAddress emailAddress;
 
         private Customer.IFacade facade;
 
@@ -20,6 +21,7 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
         {
             this.id = AutoFixture.Create<CustomerId>();
             this.name = AutoFixture.Create<Name>();
+            this.emailAddress = new EmailAddressBuilder().Build();
 
             this.facade = DomainFacadeMock.Of<Customer.IFacade>();
         }
@@ -36,6 +38,12 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
             return this;
         }
 
+        public CustomerBuilder WithEmailAddress(EmailAddress emailAddress)
+        {
+            this.emailAddress = emailAddress;
+            return this;
+        }
+
         public CustomerBuilder WithFacade(Customer.IFacade facade)
         {
             this.facade = facade;
@@ -44,7 +52,7 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
 
         protected override Customer BuildObject()
         {
-            return new Customer(id, name, facade);
+            return new Customer(id, name, emailAddress, facade);
         }
     }
 }

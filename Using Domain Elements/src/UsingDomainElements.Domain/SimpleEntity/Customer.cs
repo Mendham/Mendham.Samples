@@ -12,19 +12,22 @@ namespace MendhamSamples.UsingDomainElements.Domain.SimpleEntity
     {
         private readonly IFacade facade;
 
-        public Customer(CustomerId id, Name name, IFacade facade)
+        public Customer(CustomerId id, Name name, EmailAddress emailAddress, IFacade facade)
         {
             id.VerifyArgumentNotDefaultValue("CustomerId is required");
             name.VerifyArgumentNotDefaultValue("Name is required");
+            emailAddress.VerifyArgumentNotDefaultValue("Email Address is required");
             facade.VerifyArgumentNotDefaultValue("Facade is requird");
 
             this.Id = id;
             this.Name = name;
+            this.EmailAddress = emailAddress;
             this.facade = facade;
         }
 
         public CustomerId Id { get; private set; }
         public Name Name { get; private set; }
+        public EmailAddress EmailAddress { get; private set; }
 
         public async Task<Name> UpdateNameAsync(Name name)
         {
