@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
 {
-    public class CustomerBuilder : DataBuilder<Customer>, IEntityBuilder<Customer, Customer.IFacade, CustomerBuilder>
+    public class CustomerBuilder : Builder<Customer>, IEntityBuilder<Customer, Customer.IFacade, CustomerBuilder>
     {
         private CustomerId id;
         private Name name;
@@ -19,8 +19,8 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
 
         public CustomerBuilder()
         {
-            this.id = AutoFixture.Create<CustomerId>();
-            this.name = AutoFixture.Create<Name>();
+            this.id = CreateAnonymous<CustomerId>();
+            this.name = CreateAnonymous<Name>();
             this.emailAddress = new EmailAddressBuilder().Build();
 
             this.facade = DomainFacadeMock.Of<Customer.IFacade>();

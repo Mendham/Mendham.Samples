@@ -3,7 +3,6 @@ using Mendham.Testing.Moq;
 using MendhamSamples.UsingDomainElements.Domain.SimpleEntity;
 using MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders;
 using Moq;
-using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,23 +18,23 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Tests
         }
 
         [Theory]
-        [AutoData]
+        [MendhamData]
         public async Task UpdateName_ValidName_ChangesName(CustomerId customerId, Name originalName, Name currentName)
         {
-            var sut = TestFixture.GetSutBuilder()
+            var sut = Fixture.GetSutBuilder()
                 .WithId(customerId)
                 .WithName(originalName)
                 .Build();
-            TestFixture.Facade.AsMock()
+            Fixture.Facade.AsMock()
                 .Setup(a => a.SaveCustomerAsync(sut))
                 .ReturnsAsync(sut);
 
             var result = await sut.UpdateNameAsync(currentName);
 
             Assert.Equal(currentName, result);
-            TestFixture.Facade.AsMock()
+            Fixture.Facade.AsMock()
                 .Verify(a => a.SaveCustomerAsync(sut), Times.Once);
-            TestFixture.DomainEventPublisherFixture
+            Fixture.DomainEventPublisherFixture
                 .VerifyDomainEventRaised<CustomerNameChanged>(c =>
                     c.Customer == customerId &&
                     c.OriginalName == originalName &&

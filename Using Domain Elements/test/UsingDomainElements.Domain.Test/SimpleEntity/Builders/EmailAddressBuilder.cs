@@ -1,6 +1,5 @@
 ﻿using Mendham.Testing;
 using MendhamSamples.UsingDomainElements.Domain.SimpleEntity;
-using Ploeh.AutoFixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
 {
-    public class EmailAddressBuilder : DataBuilder<EmailAddress>
+    public class EmailAddressBuilder : Builder<EmailAddress>
     {
-        private EmailAddress emailAddress;
+        private string emailAddress;
         public EmailAddressBuilder()
         {
-            AutoFixture.Register<string, EmailAddress>(a =>
-                new EmailAddress(string.Format("{0}@{1}.com", a.Substring(0, 8), a.Substring(9, 8))));
-
-            this.emailAddress = AutoFixture.Create<EmailAddress>();
+            string baseString = CreateAnonymous("email");
+            this.emailAddress = string.Format("{0}@{1}.com", baseString.Substring(0, 13), baseString.Substring(14, 8));
         }
 
         public EmailAddressBuilder WithAddress(string emailAddress)
@@ -27,7 +24,7 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Builders
 
         protected override EmailAddress BuildObject()
         {
-            return emailAddress;
+            return new EmailAddress(emailAddress);
         }
     }
 }
