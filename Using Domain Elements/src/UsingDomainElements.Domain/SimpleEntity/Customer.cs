@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MendhamSamples.UsingDomainElements.Domain.SimpleEntity
 {
-    public class Customer : Entity
+    public class Customer : Entity<Customer>
     {
         private readonly IFacade facade;
 
@@ -42,7 +42,7 @@ namespace MendhamSamples.UsingDomainElements.Domain.SimpleEntity
             return this.Name;
         }
 
-        protected override IEnumerable<object> EqualityComponents
+        protected override IEnumerable<object> IdentityComponents
         {
             get
             {

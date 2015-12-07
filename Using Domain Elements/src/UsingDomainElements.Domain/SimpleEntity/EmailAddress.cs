@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MendhamSamples.UsingDomainElements.Domain.SimpleEntity
 {
-    public class EmailAddress : SingleFieldValueObject<string>
+    public class EmailAddress : SingleFieldValueObject<string, EmailAddress>
     {
         public EmailAddress (string emailAddress)
             :base(emailAddress)
