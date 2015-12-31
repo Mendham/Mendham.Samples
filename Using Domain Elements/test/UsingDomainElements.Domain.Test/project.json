@@ -14,10 +14,10 @@
   },
 
   "dependencies": {
-    "Mendham.Testing.Builder": "0.1.0-*",
-    "Mendham.Testing.Domain": "0.1.0-*",
-    "Mendham.Testing.Domain.Moq": "0.1.0-*",
-    "Mendham.Testing.Moq": "0.1.0-*",
+    "Mendham.Testing.Builder": "1.0.0-*",
+    "Mendham.Testing.Domain": "1.0.0-*",
+    "Mendham.Testing.Domain.Moq": "1.0.0-*",
+    "Mendham.Testing.Moq": "1.0.0-*",
     "UsingDomainElements.Domain": "1.0.0-*",
     "xunit.runner.dnx": "2.1.0-rc1-build204"
   }
