@@ -23,5 +23,35 @@ namespace MendhamSamples.UsingDomainElements.Domain.SimpleEntity
             this.OriginalName = originalName;
             this.CurrentName = currentName;
         }
+
+        public void SomeMethod(object objValue, int intVal, string strValue)
+        {
+            objValue.VerifyArgumentNotNull(nameof(objValue));
+            intVal.VerifyArgumentMeetsCriteria(nameof(intVal), num => num > 0, "intVal must be greater than zero");
+            strValue.VerifyArgumentNotNullOrWhiteSpace(nameof(strValue));
+
+            // Do Something
+        }
+
+        public void SomeMethod(string strValue)
+        {
+            strValue.VerifyArgumentNotNull(nameof(strValue))
+                .VerifyArgumentLength(nameof(strValue), 2, 5)
+                .VerifyArgumentMeetsCriteria(nameof(strValue), str => !str.Contains("$"), "strValue cannot contain a $");
+        }
+    }
+
+    public class MyClass
+    {
+        private readonly int _intVal;
+        private readonly string _strVal;
+
+        public MyClass(int intVal, string strValue)
+        {
+            _intVal = intVal
+                .VerifyArgumentMeetsCriteria(nameof(intVal), num => num > 0, "intVal must be greater than zero");
+            _strVal = strValue
+                .VerifyArgumentNotNullOrWhiteSpace(nameof(strValue));
+        }
     }
 }

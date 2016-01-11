@@ -25,14 +25,14 @@ namespace MendhamSamples.UsingDomainElements.Domain.Test.SimpleEntity.Tests
                 .WithId(customerId)
                 .WithName(originalName)
                 .Build();
-            Fixture.Facade.AsMock()
+            Fixture.DomainFacade.AsMock()
                 .Setup(a => a.SaveCustomerAsync(sut))
                 .ReturnsAsync(sut);
 
             var result = await sut.UpdateNameAsync(currentName);
 
             Assert.Equal(currentName, result);
-            Fixture.Facade.AsMock()
+            Fixture.DomainFacade.AsMock()
                 .Verify(a => a.SaveCustomerAsync(sut), Times.Once);
             Fixture.DomainEventPublisherFixture
                 .VerifyDomainEventRaised<CustomerNameChanged>(c =>

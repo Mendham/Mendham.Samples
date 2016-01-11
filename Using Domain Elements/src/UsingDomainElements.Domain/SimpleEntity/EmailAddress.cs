@@ -14,8 +14,8 @@ namespace MendhamSamples.UsingDomainElements.Domain.SimpleEntity
         public EmailAddress (string emailAddress)
             :base(emailAddress)
         {
-            emailAddress.VerifyArgumentNotDefaultValue("Email address is required")
-                .VerifyArgumentMeetsCriteria(IsValid, "Email address is not valid");
+            emailAddress.VerifyArgumentNotDefaultValue(nameof(emailAddress))
+                .VerifyArgumentMeetsCriteria(nameof(emailAddress), IsValid, "Email address is not valid");
         }
 
         #region Email Validation Object
